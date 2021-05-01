@@ -11,6 +11,10 @@ router.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public/notes.html'));
 });
 
+// Catch-all route. Returns home page
+router.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/index.html'));
+  });
 
 module.exports = router;
 
