@@ -1,25 +1,30 @@
 const fs = require('fs');
 const path = require('path');
 const notes = require('../../db/db.json');
-const {createNewNote, validateNote} = require('../../lib/notes');
+const {createNewNote, validateNote, deleteNoteById} = require('../../lib/notes');
 const router = require('express').Router();
+// Random Id generator
+const { nanoid } = require('nanoid');
+
+// ----------
+// API Routes 
+// ----------
 
 // (GET) Send Notes from {notes} back to client
 router.get('/notes', (req, res) => {
-  // notes are already in json format
   const results = notes;
-  // so send them.
-  res.send(results);
+
+  //if (results === notesArr) {
+    res.json(results);
 });
+
 
 // (POST) Save notes to {notes}
 router.post('/notes', (req, res) => {
-  console.log(req.body);
 
   // set incoming note id to what the next index of the array will be
-  req.body.id = notes.length.toString();
+  req.body.id = nanoid(10);
 
-  console.log(req.body.id);
   // Validate incoming data
   if (!validateNote(req.body)) {
     // if bad, send error code
@@ -29,19 +34,16 @@ router.post('/notes', (req, res) => {
     const result = createNewNote(req.body, notes);
     // and send it back
     res.json(result);
-  }
-  
-
+  }  
 });
+
 
 // (DELETE) Delete Note from {notes}
-router.delete('/notes/:id', (req, res) => {
-  console.log(req.params.id); 
-  // const result = DeleteById(req.params.id, zookeepers);
-    // if (result) {
-    //   res.json(result);
-    // } else {
-    //   res.send(404);
-    // }
+router.delete('/notes/:id', (req, res) => { 
+  const newNotesArr = deleteNoteById(req.params.id, notes);
+  
+  res.json(newNotesArr);
 });
+
+
 module.exports = router;

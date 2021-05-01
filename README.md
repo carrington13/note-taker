@@ -8,6 +8,8 @@
 * [Credits](#credits)
 * [License](#license)
 
+## Deployed Heroku URL
+https://cryptic-cove-59138.herokuapp.com/
 
 ## Installation
 Use 'npm install' to install all dependencies.
@@ -25,10 +27,11 @@ Note-taker is a server-side web application for making notes thats easy-to-use. 
 Node.js, Express.js, JavaScipt, HTML, CSS 
 
 ### Tests
-Currently no tests
+Use 'npm test' in CL to run test.
+All tests are performed using Jest.js
 
 ### Tutorials
-<!-- ![screenshot](./assets/video/walkthrough.webp) -->
+![screenshot](./assets/images/screenshot.png)
 
 
 ### Questions
@@ -38,22 +41,18 @@ Currently no tests
 caseyarrington13@gmail.com
 
 
-
-
 ## Credits
 
 Front-end code ('./public') and initial dir structure- Provided by:
-Trinity Education 
+Trilogy Education 
 
 Server/Back-end Code- By:
 Casey Arrington
 
 [Express.Router Guide](https://scotch.io/tutorials/learn-to-use-the-new-router-in-expressjs-4)
-Author: Chris Sev
+[Author: Chris Sev](https://scotch.io/@chris)
 
 [License Badges and Links](https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba)
-
-[Video to WEBP converter](https://www.onlineconverter.com/video-to-webp)
 
 
 
