@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 // Router/HTML Paths
 const htmlRoutes = require('./routes/htmlRoutes');
@@ -12,10 +13,12 @@ const app = express();
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
+// Set '/public' to static for browser/html
+app.use(express.static('public'));
+
 // HTML Imported Routes/Router
 app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
-app.use(express.static('public'));
 
 
 
