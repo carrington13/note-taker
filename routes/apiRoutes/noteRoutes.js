@@ -1,14 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 const notes = require('../../db/db.json');
-const {validateNote, addNote, deleteNote} = require('../../lib/notes');
+const {createNewNote, validateNote} = require('../../lib/notes');
 const router = require('express').Router();
 
 // (GET) Send Notes from {notes} back to client
 router.get('/notes', (req, res) => {
   // notes are already in json format
   const results = notes;
-  console.log(results);
   // so send them.
   res.send(results);
 });
@@ -21,16 +20,16 @@ router.post('/notes', (req, res) => {
   req.body.id = notes.length.toString();
 
   console.log(req.body.id);
-  // // Validate incoming data
-  // if (!validateNote(req.body)) {
-  //   // if bad, send error code
-  //   res.status(400).send('The note is not properly formatted');
-  // } else {
-  //   // otherwise create new note
-  //   const note = createNewNote(req.body, notes);
-  //   // and send it back
-  //   res.json(note);
-  // }
+  // Validate incoming data
+  if (!validateNote(req.body)) {
+    // if bad, send error code
+    res.status(400).send('The note is not properly formatted');
+  } else {
+    // otherwise create new note
+    const result = createNewNote(req.body, notes);
+    // and send it back
+    res.json(result);
+  }
   
 
 });
